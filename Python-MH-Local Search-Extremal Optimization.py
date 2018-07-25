@@ -159,10 +159,8 @@ def roulette_wheel(rank, city_tour, tau = 1.8):
 
 # Function: Exchange
 def exchange(Xdata, city_tour, iy = 1, ix = 2, iz = 3, iw = 4):
-    best_route = copy.deepcopy(city_tour)  
-    #seed = copy.deepcopy(city_tour)   
+    best_route = copy.deepcopy(city_tour)     
     tour = copy.deepcopy(city_tour)
-    #if (opt_2 == False):
     if (iy == -1 and city_tour[0].index(iw) < city_tour[0].index(ix)):
         i = city_tour[0].index(ix) - 1
         j = city_tour[0].index(ix)
@@ -199,48 +197,22 @@ def exchange(Xdata, city_tour, iy = 1, ix = 2, iz = 3, iw = 4):
     if (best_route[1] < tour[1]):
         tour[1] = copy.deepcopy(best_route[1])
         for n in range(0, len(tour[0])): 
-            tour[0][n] = best_route[0][n] 
-    #elif (opt_2 == True):
-        #i = city_tour[0].index(ix)
-        #for j in range(i+1, len(tour[0]) - 1):
-            #best_route[0][i:j+1] = list(reversed(best_route[0][i:j+1]))           
-            #best_route[0][-1]  = best_route[0][0]              
-            #best_route[1] = distance_calc(Xdata, city_tour = best_route) 
-            #if (best_route[1] < tour[1]):
-                #tour[1] = copy.deepcopy(best_route[1])
-                #for n in range(0, len(tour[0])): 
-                    #tour[0][n] = best_route[0][n] 
-            #best_route = copy.deepcopy(seed) 
-        
-        #j = city_tour[0].index(ix)
-        #for i in range(ix - 2, 0,-1):
-            #best_route[0][i:j+1] = list(reversed(best_route[0][i:j+1]))           
-            #best_route[0][-1]  = best_route[0][0]              
-            #best_route[1] = distance_calc(Xdata, city_tour = best_route) 
-            #if (best_route[1] < tour[1]):
-                #tour[1] = copy.deepcopy(best_route[1])
-                #for n in range(0, len(tour[0])): 
-                    #tour[0][n] = best_route[0][n] 
-            #best_route = copy.deepcopy(seed)                         
+            tour[0][n] = best_route[0][n]                        
     return tour
 
 # Function: Extremal Optimization
 def extremal_optimization(Xdata, city_tour, iterations = 50, tau = 1.8):
     count = 0
     best_solution = copy.deepcopy(city_tour)
-    #opt_2 = False
     while (count < iterations):
         for i in range(0, Xdata.shape[0]):
             rank = ranking(Xdata, city = i, tau = tau)
             iy, ix, iz, iw = roulette_wheel(rank, city_tour, tau = tau)
-            #city_tour = exchange(Xdata, city_tour, iy = iy, ix = ix, iz = iz, iw = iw, opt_2 = opt_2)
             city_tour = exchange(Xdata, city_tour, iy = iy, ix = ix, iz = iz, iw = iw)
         if (city_tour[1] < best_solution[1]):
             best_solution = copy.deepcopy(city_tour) 
         count = count + 1
         city_tour = copy.deepcopy(best_solution)
-        #if (count > iterations*0.9):
-            #opt_2 = True
         print("Iteration = ", count, "-> Distance = ", best_solution[1])
     print("Best Solution = ", best_solution)
     return best_solution
