@@ -224,7 +224,7 @@ seed = seed_function(X)
 lseo = extremal_optimization(X, city_tour = seed, iterations = 100, tau = 1.5) # tau [1.2, 1.8]
 plot_tour_distance_matrix(X, lseo) # Red Point = Initial city; Orange Point = Second City # The generated coordinates (2D projection) are aproximated, depending on the data, the optimum tour may present crosses.
 
-Y = pd.read_csv('Python-MH-Local Search-Extremal Optimization-Dataset-02.txt', sep = '\t') # Berlin 52 = 7542
+Y = pd.read_csv('Python-MH-Local Search-Extremal Optimization-Dataset-02.txt', sep = '\t') # Berlin 52 = 7544.37
 X = buid_distance_matrix(Y)
 seed = seed_function(X)
 lseo = extremal_optimization(X, city_tour = seed, iterations = 250, tau = 1.8) # tau [1.2, 1.8]
