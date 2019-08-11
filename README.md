@@ -1,5 +1,5 @@
 # Metaheuristic-Local_Search-Extremal_Optimization
-Extremal Optimization Function for TSP problems. . The function returns: 1) A list with the order of the cities to visit, and the total distance for visiting this same list order.
+Extremal Optimization Function for TSP problems. The function returns: 1) A list with the order of the cities to visit, and the total distance for visiting this same list order.
 
 * X = Distance Matrix.
 
